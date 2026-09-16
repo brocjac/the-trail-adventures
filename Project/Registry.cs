@@ -6,7 +6,8 @@ public class Registry
     // TODO — Task 1. Say what your project is about, in words.
     public static string Topic => "The Records of all my Adventures";     // ← yours
 
-    public Trails NewItem(string name) => new Trails(name);
+    public Trails NewItem(string name, string location, string surface, double totalLengthMiles, string activity, string notes) => 
+    new Trails(name, location, surface, totalLengthMiles, activity, notes);
 
     public void Add(Trails item)
     {
