@@ -70,7 +70,7 @@ public class Trails
         }
     }
 
-    public Trails(string name)
+    public Trails(string name, string location, string surface, double totalLengthMiles, string activity, string notes)
     {
         Name = name;
     }
