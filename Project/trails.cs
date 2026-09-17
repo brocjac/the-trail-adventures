@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 public class Trails
 {
     public int TimesVisited { get; private set; }
-    public string Notes { get; set; }
+    public string Notes { get; set; } = "";
 
     private string _name = "(unnamed)";
     public string Name
@@ -68,6 +68,11 @@ public class Trails
                 _activity = value.Trim();
             } 
         }
+    }
+
+    public Trails(string name)
+    {
+        Name = name;
     }
 
     public Trails(string name, string location, string surface, double totalLengthMiles, string activity, string notes)
