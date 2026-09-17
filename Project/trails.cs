@@ -5,6 +5,11 @@ public class Trails
     public int TimesVisited { get; private set; }
     public string Notes { get; set; } = "";
 
+    public void Visit()
+    {
+        TimesVisited++;
+    }
+
     private string _name = "(unnamed)";
     public string Name
     {
