@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 public class Trails
 {
     public int TimesVisited { get; private set; }
-    public string Notes { get; set; }
+    public string Notes { get; set; } = "";
 
     private string _name = "(unnamed)";
     public string Name
@@ -44,13 +44,13 @@ public class Trails
         }
     }
 
-    private decimal _totalLengthMiles = 0;
-    public decimal TotalLengthMiles
+    private double _totalLengthMiles = 0;
+    public double TotalLengthMiles
     {
         get {return _totalLengthMiles;}
         set
         {
-           if (!decimal.IsNegative(value))
+           if (!double.IsNegative(value))
             {
                 _totalLengthMiles = value;
             } 
@@ -73,10 +73,15 @@ public class Trails
     public Trails(string name)
     {
         Name = name;
-        Location = "";
-        Surface = "";
-        TotalLengthMiles = 0;
-        Activity = "";
-        Notes = "";
+    }
+
+    public Trails(string name, string location, string surface, double totalLengthMiles, string activity, string notes)
+    {
+        Name = name;
+        Location = location;
+        Surface = surface;
+        TotalLengthMiles = totalLengthMiles;
+        Activity = activity;
+        Notes = notes;
     }
 }
