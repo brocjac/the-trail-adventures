@@ -26,4 +26,16 @@ public class Registry
         // TODO — Task 5. Hand back a COPY, never the list itself.
         return new List<Trails>(_trails);                                   // ← yours
     }
+
+    public Trails? Find(string name)
+    {
+        foreach (Trails trail in _trails)
+        {
+            if (trail.Name == name)
+            {
+                return trail;
+            }
+        }
+        return null;
+    }
 }

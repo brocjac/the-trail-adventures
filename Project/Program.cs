@@ -17,3 +17,13 @@ List<Trails> both = registry.All();
 Console.WriteLine($"before:  {both[0].TimesVisited}   {both[1].TimesVisited}");
 both[0].Visit();
 Console.WriteLine($"after:   {both[0].TimesVisited}   {both[1].TimesVisited}");
+
+Console.WriteLine();
+
+// One I know is on the registry.
+Trails? known = registry.Find("Glacial Drumlin Trail");
+Console.WriteLine(known == null ? "Nothing on file by that name." : "Found it.");
+
+// And one nobody has ever heard of.
+Trails? missing = registry.Find("something I never added");
+Console.WriteLine(missing == null ? "Nothing on file by that name." : "...found something that shouldn't be there.");
