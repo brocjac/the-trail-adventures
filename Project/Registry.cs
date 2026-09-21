@@ -38,4 +38,17 @@ public class Registry
         }
         return null;
     }
+
+    public bool Remove(string name)
+    {
+        Trails? found = Find(name);
+
+        if (found == null)
+        {
+            return false;
+        }
+        
+        _trails.Remove(found);
+        return true;
+    }
 }

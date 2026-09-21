@@ -27,3 +27,9 @@ Console.WriteLine(known == null ? "Nothing on file by that name." : "Found it.")
 // And one nobody has ever heard of.
 Trails? missing = registry.Find("something I never added");
 Console.WriteLine(missing == null ? "Nothing on file by that name." : "...found something that shouldn't be there.");
+
+Console.WriteLine();
+Console.WriteLine(registry.Remove("the same name you searched for")
+    ? "Removed."
+    : "Nothing by that name.");
+Console.WriteLine($"{registry.Count} on file.");
