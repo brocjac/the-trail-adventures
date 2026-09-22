@@ -26,4 +26,29 @@ public class Registry
         // TODO — Task 5. Hand back a COPY, never the list itself.
         return new List<Trails>(_trails);                                   // ← yours
     }
+
+    public Trails? Find(string name)
+    {
+        foreach (Trails trail in _trails)
+        {
+            if (trail.Name == name)
+            {
+                return trail;
+            }
+        }
+        return null;
+    }
+
+    public bool Remove(string name)
+    {
+        Trails? found = Find(name);
+
+        if (found == null)
+        {
+            return false;
+        }
+        
+        _trails.Remove(found);
+        return true;
+    }
 }
