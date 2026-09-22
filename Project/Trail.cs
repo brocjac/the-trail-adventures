@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-public class Trails
+public class Trail
 {
     public int TimesVisited { get; private set; }
     public string Notes { get; set; } = "";
@@ -75,12 +75,12 @@ public class Trails
         }
     }
 
-    public Trails(string name)
+    public Trail(string name)
     {
         Name = name;
     }
 
-    public Trails(string name, string location, string surface, double totalLengthMiles, string activity, string notes)
+    public Trail(string name, string location, string surface, double totalLengthMiles, string activity, string notes)
     {
         Name = name;
         Location = location;
