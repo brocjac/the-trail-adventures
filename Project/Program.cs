@@ -1,6 +1,7 @@
 ﻿var registry = new Registry();
 
-registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Asphalt", 5.0, "Jogging", "The weather was great with good dry conditions"));
+registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Asphalt", 5.0, "Hike", "The weather was great with good dry conditions"));
+registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Trail", 5.0, "Jogging", "The weather was great with good dry conditions"));
 registry.Add(new Trail("Minooka", "Waukesha, WI", "Dirt", 5.0, "Jogging", "The weather was great with good dry conditions"));
 registry.Add(new Trail("Lake Schrummy", "Waukesha, WI", "Dirt", 5.0, "Jogging", "The weather was great with good dry conditions"));
 
@@ -41,3 +42,10 @@ foreach (Trail item in registry.All())
 }
 
 Console.WriteLine($"{registry.Count} on file.");
+
+Console.WriteLine();
+
+foreach (Trail item in registry.All())
+{
+    Console.WriteLine($"{item.Kind,-12}{item.Line()}");
+}

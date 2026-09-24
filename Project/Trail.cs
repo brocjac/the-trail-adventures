@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-public class Trail
+public class Trail : IListed
 {
     public int TimesVisited { get; private set; }
     public string Notes { get; set; } = "";
@@ -89,4 +89,9 @@ public class Trail
         Activity = activity;
         Notes = notes;
     }
+
+    // inside SignOut, below Back()
+    public string Kind => "TRAIL";
+
+    public string Line() => $"{Name} - {Location} - Visited {TimesVisited}x";
 }
