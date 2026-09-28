@@ -1,5 +1,5 @@
 // Project/Registry.cs
-public class Registry
+public class Registry : IListed
 {
     private readonly List<Trail> _trail = new List<Trail>();
 
@@ -51,4 +51,7 @@ public class Registry
         _trail.Remove(found);
         return true;
     }
+    public string Kind => "REGISTRY";
+
+    public string Line() => $"{Topic} - {Count} on file";
 }
