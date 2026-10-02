@@ -1,4 +1,3 @@
-// Project/Registry.cs
 public class Registry : IListed
 {
     private readonly List<Trail> _trail = new List<Trail>();

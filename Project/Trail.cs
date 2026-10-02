@@ -89,7 +89,7 @@ public class Trail : IListed
         Activity = activity;
         Notes = notes;
     }
-
+    
     // inside SignOut, below Back()
     public string Kind => "TRAIL";
 
