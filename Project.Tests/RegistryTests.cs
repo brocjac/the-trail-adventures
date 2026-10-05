@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Project.Tests;
 
 public class RegistryTests
@@ -11,8 +13,8 @@ public class RegistryTests
 
         Registry registry = new Registry();
 
-        registry.Add(registry.NewItem("A fresh Registry"));
-        registry.Add(registry.NewItem("Add two records, with two DIFFERENT names"));
+        registry.Add(registry.NewItem("Ice Age Trail"));
+        registry.Add(registry.NewItem("Glacial Drumlin Trail"));
 
         Assert.Equal(2, registry.Count);
     }
@@ -30,5 +32,21 @@ public class RegistryTests
 
         // Check the answer
         Assert.Same(depot, found);
+    }
+
+    [Fact]
+    public void Check2_RemovingAStrangerSaysNo()
+    {
+        // Set the scene
+        var registry = new Registry();
+        var trail = registry.NewItem("Ice Age Trail");
+        registry.Add(trail);
+
+        // Do the thing
+        var removed = registry.Remove("Trail That Does Not Exist");
+
+        // Check the answer
+        Assert.False(removed);
+        Assert.Equal(1, registry.Count);
     }
 }
