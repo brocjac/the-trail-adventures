@@ -16,4 +16,19 @@ public class RegistryTests
 
         Assert.Equal(2, registry.Count);
     }
+
+    [Fact]
+    public void Check2_FindHandsBackTheRecordItHolds()
+    {
+        // Set the scene
+        var registry = new Registry();
+        var depot = registry.NewItem("Depot");
+        registry.Add(depot);
+
+        // Do the thing
+        var found = registry.Find("Depot");
+
+        // Check the answer
+        Assert.Same(depot, found);
+    }
 }
