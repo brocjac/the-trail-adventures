@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 public class Registry : IListed
 {
     private readonly List<Trail> _trail = new List<Trail>();
@@ -70,5 +72,33 @@ public class Registry : IListed
         }
 
         return listing;
+    }
+
+    public void Save(string path)
+    {
+        string json = JsonSerializer.Serialize(_trail, new JsonSerializerOptions {WriteIndented = true});
+        File.WriteAllText(path,json);
+    }
+
+    public void Load(string path)
+    {
+        if (!File.Exists(path))
+        {
+            return;
+        }
+
+        List<Trail>? loaded = JsonSerializer.Deserialize<List<Trail>>(File.ReadAllText(path));
+
+        if (loaded == null)
+        {
+            return;
+        }
+
+        _trail.Clear();
+
+        foreach (Trail item in loaded)
+        {
+            _trail.Add(item);
+        }
     }
 }

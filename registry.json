@@ -1,0 +1,42 @@
+[
+  {
+    "TimesVisited": 0,
+    "Notes": "The weather was great with good dry conditions",
+    "Name": "Glacial Drumlin Trail",
+    "Location": "Waukesha, WI",
+    "Surface": "Asphalt",
+    "TotalLengthMiles": 5,
+    "Activity": "Hike",
+    "Kind": "TRAIL"
+  },
+  {
+    "TimesVisited": 1,
+    "Notes": "The weather was great with good dry conditions",
+    "Name": "Minooka",
+    "Location": "Waukesha, WI",
+    "Surface": "Dirt",
+    "TotalLengthMiles": 5,
+    "Activity": "Jogging",
+    "Kind": "TRAIL"
+  },
+  {
+    "TimesVisited": 0,
+    "Notes": "The weather was great with good dry conditions",
+    "Name": "Lake Schrummy",
+    "Location": "Waukesha, WI",
+    "Surface": "Dirt",
+    "TotalLengthMiles": 5,
+    "Activity": "Jogging",
+    "Kind": "TRAIL"
+  },
+  {
+    "TimesVisited": 0,
+    "Notes": "",
+    "Name": "Ice Age Trail",
+    "Location": "",
+    "Surface": "(unnamed)",
+    "TotalLengthMiles": 0,
+    "Activity": "",
+    "Kind": "TRAIL"
+  }
+]

@@ -45,3 +45,10 @@ Console.WriteLine();
 // second one refused. The count is the only thing that tells you.
 registry.Add(registry.NewItem("Ice Age Trail"));
 Console.WriteLine($"Tried to register \"Ice Age Trail\" twice - {registry.Count} on file.");
+
+string registryFile = "registry.json";
+
+registry.Save(registryFile);
+Console.WriteLine($"{registry.Count} on file, saved to {registryFile}.");
+
+registry.Load(registryFile);
