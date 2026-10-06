@@ -49,4 +49,18 @@ public class RegistryTests
         Assert.False(removed);
         Assert.Equal(1, registry.Count);
     }
+
+    [Fact]
+    public void Check5_TheSameNameCannotRegisterTwice()
+    {
+        // Set the scene
+        var registry = new Registry();
+
+        // Do the thing
+        registry.Add(registry.NewItem("Ice Age Trail"));
+        registry.Add(registry.NewItem("Ice Age Trail"));
+
+        // Check the answer
+        Assert.Equal(1, registry.Count);
+    }
 }

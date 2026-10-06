@@ -15,6 +15,10 @@ public class Registry : IListed
 
     public void Add(Trail item)
     {
+        if (Find(item.Name) != null)
+        {
+            return;
+        }
         _trail.Add(item);
     }
 
