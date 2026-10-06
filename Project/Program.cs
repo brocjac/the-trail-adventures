@@ -40,3 +40,8 @@ foreach (IListed thing in registry.Everything())
     Console.WriteLine($"{thing.Kind,-12}{thing.Line()}");
 }
 Console.WriteLine();
+
+// Week 7's rule, visible: Add called twice with the same name, and the
+// second one refused. The count is the only thing that tells you.
+registry.Add(registry.NewItem("Ice Age Trail"));
+Console.WriteLine($"Tried to register \"Ice Age Trail\" twice - {registry.Count} on file.");
