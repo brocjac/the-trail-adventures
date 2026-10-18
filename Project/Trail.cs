@@ -1,7 +1,9 @@
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization; 
 
 public class Trail : IListed
 {
+    [JsonInclude]
     public int TimesVisited { get; private set; }
     public string Notes { get; set; } = "";
 
@@ -73,6 +75,10 @@ public class Trail : IListed
                 _activity = value.Trim();
             } 
         }
+    }
+
+    public Trail()
+    {
     }
 
     public Trail(string name)
