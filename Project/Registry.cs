@@ -34,14 +34,7 @@ public class Registry : IListed
 
     public Trail? Find(string name)
     {
-        foreach (Trail trail in _trail)
-        {
-            if (trail.Name == name)
-            {
-                return trail;
-            }
-        }
-        return null;
+        return _trail.FirstOrDefault(item => item.Name == name);
     }
 
     public bool Remove(string name)
@@ -99,6 +92,23 @@ public class Registry : IListed
         foreach (Trail item in loaded)
         {
             _trail.Add(item);
+            _trail.Clear();
+            _trail.AddRange(loaded);
         }
+    }
+
+    public List<Trail> Matching(string term)
+    {
+        return _trail.Where(item => item.Name.Contains(term)).ToList();
+    }
+
+    public List<string> Names()
+    {
+        return _trail.Select(item => item.Name).ToList();
+    }
+
+    public List<Trail> Sorted()
+    {
+        return _trail.OrderBy(item => item.Name).ToList();
     }
 }

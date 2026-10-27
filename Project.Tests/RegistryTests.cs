@@ -82,4 +82,14 @@ public class RegistryTests
         Assert.Equal(1, reopened.Count);
         Assert.Equal(1, reopened.All()[0].TimesVisited);
     }
+    [Fact]
+    public void Week9_FindComesBackEmptyHanded()
+    {
+        Registry registry = new Registry();
+        Trail item = registry.NewItem("West Bend Ice Age");
+        registry.Add(item);
+
+        Assert.Same(item, registry.Find("West Bend Ice Age"));
+        Assert.Null(registry.Find("Black Forest"));
+    }
 }
