@@ -96,4 +96,9 @@ public class Registry : IListed
             _trail.AddRange(loaded);
         }
     }
+
+    public List<Trail> Matching(string term)
+    {
+        return _trail.Where(item => item.Name.Contains(term)).ToList();
+    }
 }

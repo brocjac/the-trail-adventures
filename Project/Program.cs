@@ -52,3 +52,16 @@ registry.Save(registryFile);
 Console.WriteLine($"{registry.Count} on file, saved to {registryFile}.");
 
 registry.Load(registryFile);
+
+Console.WriteLine();
+Console.Write("Search (a word, or Enter to skip): ");
+string? term = Console.ReadLine();
+
+if (!string.IsNullOrWhiteSpace(term))
+{
+    var found = registry.Matching(term.Trim());
+
+    Console.WriteLine(found.Count == 0
+        ? $"  Nothing on file with \"{term.Trim()}\" in it."
+        : $"  {found.Count} on file with \"{term.Trim()}\" in it.");
+}
