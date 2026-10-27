@@ -106,4 +106,9 @@ public class Registry : IListed
     {
         return _trail.Select(item => item.Name).ToList();
     }
+
+    public List<Trail> Sorted()
+    {
+        return _trail.OrderBy(item => item.Name).ToList();
+    }
 }
