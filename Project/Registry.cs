@@ -101,4 +101,9 @@ public class Registry : IListed
     {
         return _trail.Where(item => item.Name.Contains(term)).ToList();
     }
+
+    public List<string> Names()
+    {
+        return _trail.Select(item => item.Name).ToList();
+    }
 }
