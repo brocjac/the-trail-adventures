@@ -1,8 +1,11 @@
 using System.Runtime.CompilerServices;
-using System.Text.Json.Serialization; 
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 public class Trail : IListed
 {
+    public int Id { get; set; }
+
     [JsonInclude]
     public int TimesVisited { get; private set; }
     public string Notes { get; set; } = "";
