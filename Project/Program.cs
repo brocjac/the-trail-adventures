@@ -46,12 +46,12 @@ Console.WriteLine();
 registry.Add(registry.NewItem("Ice Age Trail"));
 Console.WriteLine($"Tried to register \"Ice Age Trail\" twice - {registry.Count} on file.");
 
-string registryFile = "registry.json";
+ProjectContext db = new ProjectContext();
 
-registry.Save(registryFile);
-Console.WriteLine($"{registry.Count} on file, saved to {registryFile}.");
+registry.Save(db);
+Console.WriteLine($"{registry.Count} on file, saved to database.");
 
-registry.Load(registryFile);
+registry.Load(db);
 
 Console.WriteLine();
 Console.Write("Search (a word, or Enter to skip): ");
