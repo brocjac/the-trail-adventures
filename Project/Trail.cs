@@ -4,9 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 public class Trail : IListed
 {
-    public int Id { get; set; }
-
     [JsonInclude]
+    public int Id { get; set; }
     public int TimesVisited { get; private set; }
     public string Notes { get; set; } = "";
 

@@ -111,4 +111,28 @@ public class Registry : IListed
     {
         return _trail.OrderBy(item => item.Name).ToList();
     }
+
+    public void Save(ProjectContext db)
+    {
+        foreach (Trail item in _trail)
+        {
+            db.Trails.Add(item);
+        }
+
+        db.SaveChanges();
+    }
+
+    public void Load(ProjectContext db)
+    {
+        List<Trail> loaded = db.Trails.OrderBy(item => item.Id).ToList();
+
+        if (loaded.Count == 0)
+        {
+            return;
+        }
+
+        _trail.Clear();
+
+        _trail.AddRange(loaded);
+    }
 }

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
 public class ProjectContext : DbContext
 {
     public DbSet<Trail> Trails {get; set;}
@@ -9,7 +8,8 @@ public class ProjectContext : DbContext
         
     }
 
-    public ProjectContext(DbContextOptions<ProjectContext> options) : base(options)
+    public ProjectContext(DbContextOptions<ProjectContext> options) 
+        : base(options)
     {
         
     }

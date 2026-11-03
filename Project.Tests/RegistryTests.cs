@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace Project.Tests;
 
@@ -66,18 +67,19 @@ public class RegistryTests
     [Fact]
     public void Week8_TheRegistrySurvivesARestart()
     {
-        string path = Path.Combine(Path.GetTempPath(), "trails.json");
-        File.Delete(path);
-
+        DbContextOptions<ProjectContext> options = new DbContextOptionsBuilder<ProjectContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
+        
         Registry registry = new Registry();
         Trail item = registry.NewItem("Glacial Trails");
         registry.Add(item);
         item.Visit();
 
-        registry.Save(path);
+        registry.Save(new ProjectContext(options));
 
         Registry reopened = new Registry();
-        reopened.Load(path);
+        reopened.Load(new ProjectContext(options));
 
         Assert.Equal(1, reopened.Count);
         Assert.Equal(1, reopened.All()[0].TimesVisited);
