@@ -112,11 +112,18 @@ public class Registry : IListed
         return _trail.OrderBy(item => item.Name).ToList();
     }
 
-    public void Save(ProjectContext db)
+     public void Save(ProjectContext db)
     {
         foreach (Trail item in _trail)
         {
-            db.Trails.Add(item);
+            if (item.Id == 0)
+            {
+                db.Trails.Add(item);
+            }
+            else
+            {
+                db.Trails.Update(item);
+            }
         }
 
         db.SaveChanges();

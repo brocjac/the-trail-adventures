@@ -94,4 +94,29 @@ public class RegistryTests
         Assert.Same(item, registry.Find("West Bend Ice Age"));
         Assert.Null(registry.Find("Black Forest"));
     }
+
+    [Fact]
+    public void Week10_ASecondSaveChangesTheRow()
+    {
+        DbContextOptions<ProjectContext> options = new DbContextOptionsBuilder<ProjectContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
+
+        Registry registry = new Registry();
+        registry.Add(registry.NewItem("Ice Age Trail"));
+        registry.Save(new ProjectContext(options));
+
+        ProjectContext db = new ProjectContext(options);
+        Registry nextRun = new Registry();
+        nextRun.Load(db);
+        Trail item = nextRun.Find("Ice Age Trail")!;
+        item.Visit();
+        nextRun.Save(db);
+
+        Registry reopened = new Registry();
+        reopened.Load(new ProjectContext(options));
+
+        Assert.Equal(1, reopened.Count);
+        Assert.Equal(1, reopened.Find("Ice Age Trail")!.TimesVisited);
+    }
 }
