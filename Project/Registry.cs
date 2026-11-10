@@ -126,6 +126,14 @@ public class Registry : IListed
             }
         }
 
+        foreach (Trail row in db.Trails.ToList())
+        {
+            if (!_trail.Any(item => item.Id == row.Id))
+            {
+                db.Trails.Remove(row);
+            }
+        }
+
         db.SaveChanges();
     }
 

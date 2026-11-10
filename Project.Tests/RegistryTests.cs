@@ -119,4 +119,30 @@ public class RegistryTests
         Assert.Equal(1, reopened.Count);
         Assert.Equal(1, reopened.Find("Ice Age Trail")!.TimesVisited);
     }
+        [Fact]
+    public void Week11_ARemovedRecordStaysGone()
+    {
+        DbContextOptions<ProjectContext> options = new DbContextOptionsBuilder<ProjectContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
+
+        Registry registry = new Registry();
+        Trail kept = registry.NewItem("Minooka");
+        Trail removed = registry.NewItem("Drumlin Trail");
+        registry.Add(kept);
+        registry.Add(removed);
+        registry.Save(new ProjectContext(options));
+
+        ProjectContext db = new ProjectContext(options);
+        Registry nextRun = new Registry();
+        nextRun.Load(db);
+        nextRun.Remove("Drumlin Trail");
+        nextRun.Save(db);
+
+        Registry reopened = new Registry();
+        reopened.Load(new ProjectContext(options));
+
+        Assert.Equal(1, reopened.Count);
+        Assert.Null(reopened.Find("Drumlin Trail"));
+    }
 }
