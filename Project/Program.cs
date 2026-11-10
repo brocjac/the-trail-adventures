@@ -10,6 +10,8 @@ foreach (Trail trail in registry.All())
     Console.WriteLine($"{trail.Name} - {trail.Location}");
 }
 
+registry.Remove("Minooka");
+
 Console.WriteLine();
 
 // One I know something about. Find hands back the record the registry is
