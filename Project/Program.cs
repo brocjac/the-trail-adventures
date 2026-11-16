@@ -78,3 +78,11 @@ foreach (var record in registry.Sorted())
 {
     Console.WriteLine($"  {record.Name}");
 }
+
+Activity? withDetails = registry.Find("a name of yours");
+
+if (withDetails != null)
+{
+    withDetails.ActivityId.Add(registry.NewDetail("a detail of yours"));
+    Console.WriteLine($"{withDetails.ActivityId.Count} details on file for that record.");
+}

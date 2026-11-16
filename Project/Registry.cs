@@ -1,7 +1,9 @@
+using System.Diagnostics;
 using System.Text.Json;
 
 public class Registry : IListed
 {
+    public List<Activity> Activities { get; private set; } = new List<Activity>();
     private readonly List<Trail> _trail = new List<Trail>();
 
     // TODO — Task 1. Say what your project is about, in words.
@@ -11,6 +13,8 @@ public class Registry : IListed
     {
         return new Trail(name);
     }
+
+    public Activity NewDetail(string name) => new Activity(name);
 
     public Trail NewItem(string name, string location, string surface, double totalLengthMiles, string activity, string notes) => 
     new Trail(name, location, surface, totalLengthMiles, activity, notes);

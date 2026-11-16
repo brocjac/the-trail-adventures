@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 public class ProjectContext : DbContext
 {
     public DbSet<Trail> Trails {get; set;}
+    public DbSet<Activity> Activities { get; set; }
     public ProjectContext()
     {
         
