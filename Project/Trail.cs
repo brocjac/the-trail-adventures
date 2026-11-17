@@ -102,4 +102,6 @@ public class Trail : IListed
     public string Kind => "TRAIL";
 
     public string Line() => $"{Name} - {Location} - Visited {TimesVisited}x";
+
+    public List<Activity> Activities { get; set; } = new List<Activity>();
 }

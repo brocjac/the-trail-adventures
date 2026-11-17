@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 public class Registry : IListed
 {
-    public List<Activity> Activities { get; private set; } = new List<Activity>();
     private readonly List<Trail> _trail = new List<Trail>();
 
     // TODO — Task 1. Say what your project is about, in words.
@@ -91,14 +91,9 @@ public class Registry : IListed
             return;
         }
 
+        
         _trail.Clear();
-
-        foreach (Trail item in loaded)
-        {
-            _trail.Add(item);
-            _trail.Clear();
-            _trail.AddRange(loaded);
-        }
+        _trail.AddRange(loaded);
     }
 
     public List<Trail> Matching(string term)
