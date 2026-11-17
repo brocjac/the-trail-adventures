@@ -119,7 +119,7 @@ public class RegistryTests
         Assert.Equal(1, reopened.Count);
         Assert.Equal(1, reopened.Find("Ice Age Trail")!.TimesVisited);
     }
-        [Fact]
+    [Fact]
     public void Week11_ARemovedRecordStaysGone()
     {
         DbContextOptions<ProjectContext> options = new DbContextOptionsBuilder<ProjectContext>()
@@ -144,5 +144,24 @@ public class RegistryTests
 
         Assert.Equal(1, reopened.Count);
         Assert.Null(reopened.Find("Drumlin Trail"));
+    }
+    [Fact]
+    public void Week12_DetailsComeBack()
+    {
+        DbContextOptions<ProjectContext> options = new DbContextOptionsBuilder<ProjectContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
+
+        Registry registry = new Registry();
+        Trail record = registry.NewItem("Trail America");
+        record.Activities.Add(registry.NewDetail("Hiking"));
+        record.Activities.Add(registry.NewDetail("Biking"));
+        registry.Add(record);
+        registry.Save(new ProjectContext(options));
+
+        Registry reopened = new Registry();
+        reopened.Load(new ProjectContext(options));
+
+        Assert.Equal(2, reopened.Find("Trail America")!.Activities.Count);
     }
 }

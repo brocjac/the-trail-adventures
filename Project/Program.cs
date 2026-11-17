@@ -34,6 +34,19 @@ if (!string.IsNullOrWhiteSpace(name))
     Console.WriteLine(registry.Remove(name) ? "Removed." : "Nothing by that name.");
 }
 
+Trail? withDetails = registry.Find("Your Trail Name");
+
+if (withDetails != null)
+{
+    withDetails.Activities.Add(
+        registry.NewDetail("Hiking")
+    );
+
+    Console.WriteLine(
+        $"{withDetails.Activities.Count} details on file for that record."
+    );
+}
+
 Console.WriteLine();
 
 // One loop. It knows about exactly one thing, and that thing is not a class.
@@ -78,3 +91,5 @@ foreach (var record in registry.Sorted())
 {
     Console.WriteLine($"  {record.Name}");
 }
+
+Console.WriteLine($"With details: {string.Join(", ", registry.WithDetails(db))}");

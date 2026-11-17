@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
 public class Registry : IListed
 {
@@ -11,6 +13,8 @@ public class Registry : IListed
     {
         return new Trail(name);
     }
+
+    public Activity NewDetail(string name) => new Activity(name);
 
     public Trail NewItem(string name, string location, string surface, double totalLengthMiles, string activity, string notes) => 
     new Trail(name, location, surface, totalLengthMiles, activity, notes);
@@ -87,14 +91,9 @@ public class Registry : IListed
             return;
         }
 
+        
         _trail.Clear();
-
-        foreach (Trail item in loaded)
-        {
-            _trail.Add(item);
-            _trail.Clear();
-            _trail.AddRange(loaded);
-        }
+        _trail.AddRange(loaded);
     }
 
     public List<Trail> Matching(string term)
@@ -139,7 +138,7 @@ public class Registry : IListed
 
     public void Load(ProjectContext db)
     {
-        List<Trail> loaded = db.Trails.OrderBy(item => item.Id).ToList();
+        List<Trail> loaded = db.Trails.Include(item => item.Activities).OrderBy(item => item.Id).ToList();
 
         if (loaded.Count == 0)
         {
@@ -150,4 +149,13 @@ public class Registry : IListed
 
         _trail.AddRange(loaded);
     }
+
+    public List<string> WithDetails(ProjectContext db)
+        {
+            return db.Trails
+                .Where(item => item.Activities.Any())
+                .OrderBy(item => item.Name)
+                .Select(item => item.Name)
+                .ToList();
+        }
 }
