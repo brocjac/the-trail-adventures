@@ -149,4 +149,13 @@ public class Registry : IListed
 
         _trail.AddRange(loaded);
     }
+
+    public List<string> WithDetails(ProjectContext db)
+        {
+            return db.Trails
+                .Where(item => item.Activities.Any())
+                .OrderBy(item => item.Name)
+                .Select(item => item.Name)
+                .ToList();
+        }
 }

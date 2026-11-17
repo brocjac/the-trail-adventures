@@ -91,3 +91,5 @@ foreach (var record in registry.Sorted())
 {
     Console.WriteLine($"  {record.Name}");
 }
+
+Console.WriteLine($"With details: {string.Join(", ", registry.WithDetails(db))}");

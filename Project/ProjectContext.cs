@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Logging;
 public class ProjectContext : DbContext
 {
     public DbSet<Trail> Trails {get; set;}
@@ -28,5 +30,7 @@ public class ProjectContext : DbContext
             .Build();
 
         options.UseSqlServer(config["ConnectionStrings:Project"]);
+
+        options.LogTo(Console.WriteLine, LogLevel.Information, DbContextLoggerOptions.None);
     }
 }
