@@ -138,7 +138,7 @@ public class Registry : IListed
 
     public void Load(ProjectContext db)
     {
-        List<Trail> loaded = db.Trails.OrderBy(item => item.Id).ToList();
+        List<Trail> loaded = db.Trails.Include(item => item.Activities).OrderBy(item => item.Id).ToList();
 
         if (loaded.Count == 0)
         {
