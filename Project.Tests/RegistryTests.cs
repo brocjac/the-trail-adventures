@@ -153,7 +153,7 @@ public class RegistryTests
             .Options;
 
         Registry registry = new Registry();
-        Trail record = registry.NewItem("Lake America");
+        Trail record = registry.NewItem("Trail America");
         record.Activities.Add(registry.NewDetail("Hiking"));
         record.Activities.Add(registry.NewDetail("Biking"));
         registry.Add(record);
@@ -162,6 +162,6 @@ public class RegistryTests
         Registry reopened = new Registry();
         reopened.Load(new ProjectContext(options));
 
-        Assert.Equal(2, reopened.Find("Lake America")!.Activities.Count);
+        Assert.Equal(2, reopened.Find("Trail America")!.Activities.Count);
     }
 }
