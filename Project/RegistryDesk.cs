@@ -23,7 +23,7 @@ public static class RegistryDesk
         }
     }
 
-        public static void Import(Registry registry)
+    public static void Import(Registry registry)
     {
         while (true)
         {
@@ -50,6 +50,11 @@ public static class RegistryDesk
             catch (JsonException)
             {
                 Console.WriteLine("Refused: that file is damaged. Nothing was added.");
+                return;
+            }
+            catch (InvalidDataException problem)
+            {
+                Console.WriteLine($"Refused: {problem.Message} Nothing was added.");
                 return;
             }
         }
