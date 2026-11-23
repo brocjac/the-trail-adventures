@@ -29,10 +29,7 @@ Console.Write("Take one off the books (Enter to skip): ");
 string? name = Console.ReadLine();
 
 Console.WriteLine();
-if (!string.IsNullOrWhiteSpace(name))
-{
-    Console.WriteLine(registry.Remove(name) ? "Removed." : "Nothing by that name.");
-}
+RegistryDesk.Remove(registry);
 
 Trail? withDetails = registry.Find("Your Trail Name");
 
@@ -63,6 +60,7 @@ Console.WriteLine($"Tried to register \"Ice Age Trail\" twice - {registry.Count}
 
 ProjectContext db = new ProjectContext();
 
+RegistryDesk.Import(registry);
 registry.Save(db);
 Console.WriteLine($"{registry.Count} on file, saved to database.");
 
