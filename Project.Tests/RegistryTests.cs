@@ -164,4 +164,15 @@ public class RegistryTests
 
         Assert.Equal(2, reopened.Find("Trail America")!.Activities.Count);
     }
+        [Fact]
+    public void Week13_ABadFileAddsNothing()
+    {
+        string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".json");
+        File.WriteAllText(path, """[ "Minooka", "" ]""");
+
+        Registry registry = new Registry();
+
+        Assert.Throws<InvalidDataException>(() => registry.Import(path));
+        Assert.Equal(0, registry.Count);
+    }
 }
