@@ -13,11 +13,11 @@ public class Registry : IListed
     {
         return new Trail(name);
     }
+    public Activity NewDetail(string type) => new Activity(type);
+    public Activity NewDetail(string type, string surface, double totalLengthMiles, string notes) => new Activity(type, surface, totalLengthMiles, notes);
 
-    public Activity NewDetail(string name) => new Activity(name);
-
-    public Trail NewItem(string name, string location, string surface, double totalLengthMiles, string activity, string notes) => 
-    new Trail(name, location, surface, totalLengthMiles, activity, notes);
+    public Trail NewItem(string name, string location) => 
+    new Trail(name, location);
 
     public void Add(Trail item)
     {

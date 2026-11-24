@@ -2,10 +2,10 @@
 
 var registry = new Registry();
 
-registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Asphalt", 5.0, "Hike", "The weather was great with good dry conditions"));
-registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Trail", 5.0, "Jogging", "The weather was great with good dry conditions"));
-registry.Add(new Trail("Minooka", "Waukesha, WI", "Dirt", 5.0, "Jogging", "The weather was great with good dry conditions"));
-registry.Add(new Trail("Lake Schrummy", "Waukesha, WI", "Dirt", 5.0, "Jogging", "The weather was great with good dry conditions"));
+registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI"));
+registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI"));
+registry.Add(new Trail("Minooka", "Waukesha, WI"));
+registry.Add(new Trail("Lake Schrummy", "Waukesha, WI"));
 
 foreach (Trail trail in registry.All())
 {
@@ -38,7 +38,7 @@ Trail? withDetails = registry.Find("Your Trail Name");
 if (withDetails != null)
 {
     withDetails.Activities.Add(
-        registry.NewDetail("Hiking")
+        registry.NewDetail("Hiking", "Dirt", 5.0, "The weather was great with good dry conditions")
     );
 
     Console.WriteLine(
