@@ -150,6 +150,29 @@ public class Registry : IListed
         _trail.AddRange(loaded);
     }
 
+    public int Import(string path)
+    {
+        string json = File.ReadAllText(path);
+        List<string> names = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+
+        foreach (string name in names)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new InvalidDataException("The file has a blank name in it.");
+            }
+        }
+
+        int before = Count;
+
+        foreach (string name in names)
+        {
+            Add(NewItem(name));
+        }
+
+        return Count - before;
+    }
+
     public List<string> WithDetails(ProjectContext db)
         {
             return db.Trails
