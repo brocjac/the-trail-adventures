@@ -1,4 +1,6 @@
-﻿var registry = new Registry();
+﻿using Microsoft.EntityFrameworkCore;
+
+var registry = new Registry();
 
 registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Asphalt", 5.0, "Hike", "The weather was great with good dry conditions"));
 registry.Add(new Trail("Glacial Drumlin Trail", "Waukesha, WI", "Trail", 5.0, "Jogging", "The weather was great with good dry conditions"));
@@ -60,8 +62,24 @@ Console.WriteLine($"Tried to register \"Ice Age Trail\" twice - {registry.Count}
 
 ProjectContext db = new ProjectContext();
 
+if (db.Database.CanConnect())
+{
+    Console.WriteLine("The program can't reach its database, so it stopped here.");
+    Console.WriteLine("Check your network and your connection string, then run it again.");
+    return;
+}
+
 RegistryDesk.Import(registry);
-registry.Save(db);
+try
+{
+    registry.Save(db);
+}
+catch (DbUpdateException)
+{
+    Console.WriteLine("A record this run was holding has gone from its table, so nothing was saved.");
+    Console.WriteLine("Run the program again to pick up from what's there.");
+    return;
+}
 Console.WriteLine($"{registry.Count} on file, saved to database.");
 
 registry.Load(db);

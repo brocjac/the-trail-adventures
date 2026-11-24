@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
 
 public class Registry : IListed
 {

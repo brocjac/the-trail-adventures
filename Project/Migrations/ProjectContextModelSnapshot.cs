@@ -35,7 +35,12 @@ namespace Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TrailId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TrailId");
 
                     b.ToTable("Activities");
                 });
@@ -77,6 +82,18 @@ namespace Project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Trails");
+                });
+
+            modelBuilder.Entity("Activity", b =>
+                {
+                    b.HasOne("Trail", null)
+                        .WithMany("Activities")
+                        .HasForeignKey("TrailId");
+                });
+
+            modelBuilder.Entity("Trail", b =>
+                {
+                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }
