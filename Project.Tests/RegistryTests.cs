@@ -1,5 +1,8 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Project.Migrations;
 
 namespace Project.Tests;
 
@@ -164,7 +167,7 @@ public class RegistryTests
 
         Assert.Equal(2, reopened.Find("Trail America")!.Activities.Count);
     }
-        [Fact]
+    [Fact]
     public void Week13_ABadFileAddsNothing()
     {
         string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".json");
@@ -174,5 +177,16 @@ public class RegistryTests
 
         Assert.Throws<InvalidDataException>(() => registry.Import(path));
         Assert.Equal(0, registry.Count);
+    }
+    [Fact]
+    public void Week14_TheOldRecordsGetThreeStars()
+    {
+        Migration migration = new EveryRecordGetsStars();
+
+        AddColumnOperation stars = migration.UpOperations
+            .OfType<AddColumnOperation>()
+            .Single(op => op.Name == "Stars");
+
+        Assert.Equal(3, stars.DefaultValue);
     }
 }

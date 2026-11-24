@@ -1,17 +1,7 @@
 public class Activity
 {
     public int Id { get; set; }
-    public DateTime? Added { get; private set; }
     public string Notes { get; set; } = "";
-    public string AddedOn()
-    {
-        if (Added == null)
-        {
-            return "-";
-        }
-
-        return Added.Value.ToString("yyyy-MM-dd");
-    }
     public int ActivityId { get; set; }
     private double _totalLengthMiles = 0;
     public double TotalLengthMiles
@@ -60,6 +50,5 @@ public class Activity
         Surface = surface;
         TotalLengthMiles = totalLengthMiles;
         Notes = notes;
-        Added = DateTime.Now;
     }
 }

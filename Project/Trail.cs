@@ -7,7 +7,17 @@ public class Trail : IListed
     [JsonInclude]
     public int Id { get; set; }
     public int TimesVisited { get; private set; }
+    public DateTime? Added { get; private set; }
+    public string AddedOn()
+    {
+        if (Added == null)
+        {
+            return "-";
+        }
 
+        return Added.Value.ToString("yyyy-MM-dd");
+    }
+    public int Stars { get; set; } = 3;
     public void Visit()
     {
         TimesVisited++;
@@ -52,12 +62,11 @@ public class Trail : IListed
     {
         Name = name;
         Location = location;
+        Added = DateTime.Now;
     }
     
     // inside SignOut, below Back()
     public string Kind => "TRAIL";
-
-    public string Line() => $"{Name} - {Location} - Visited {TimesVisited}x";
-
     public List<Activity> Activities { get; set; } = new List<Activity>();
+    public string Line() => $"{Name} - {Location} - Visited {TimesVisited}x - added {AddedOn()}, {Stars} stars";
 }
